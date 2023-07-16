@@ -1,18 +1,17 @@
 import express from 'express';
 import cors from 'cors';
+import axios from 'axios';
 
 const PORT = process.env.PORT || 5555;
 const app = express();
 app.use(cors());
 
 app.get('/', async (req, res) => {
-  console.log(req.params);
-  console.log(req.query);
   try {
-    const { link } = req.query;
-    if (typeof link === 'string') {
-      const resposnse = await fetch(link);
-      const data = await resposnse.json();
+    const { url } = req.query;
+    if (typeof url === 'string') {
+      const response = await axios.get(url);
+      const { data } = response;
       res.status(200);
       res.end(JSON.stringify(data));
     }
@@ -22,7 +21,6 @@ app.get('/', async (req, res) => {
   }
 });
 
-// Запуск сервера
 app.listen(PORT, () => {
   console.log(`Proxy server start on port: ${PORT}`);
 });
