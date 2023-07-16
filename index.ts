@@ -29,8 +29,8 @@ app.get('/', async (req, res) => {
       </html>
     `);
     }
-  } catch {
-    res.status(400);
+  } catch (error) {
+    res.status(500);
     res.end(
       'GET Request: "https://proxi-add-cors.vercel.app/?url=YOUR_API_URL"',
     );
