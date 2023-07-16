@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
-import fs from 'fs';
-import path from 'path';
 
 const PORT = process.env.PORT || 5555;
 const app = express();
@@ -18,16 +16,24 @@ app.get('/', async (req, res) => {
       res.status(200);
       res.end(JSON.stringify(data));
     } else {
-      const __dirname = path.resolve(path.dirname(''));
-      const file_path = `${__dirname}/index.html`;
-      fs.readFile(file_path, (err, data) => {
-        res.writeHead(200);
-        res.end(data);
-      });
+      res.setHeader('Content-Type', 'text/html');
+      res.send(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Hello CORS</title>
+        </head>
+        <body>
+          <h1>GET Request: "https://proxi-add-cors.vercel.app/?url=YOUR_API_URL"</h1>
+        </body>
+      </html>
+    `);
     }
   } catch {
     res.status(400);
-    res.end('Bad Request');
+    res.end(
+      'GET Request: "https://proxi-add-cors.vercel.app/?url=YOUR_API_URL"',
+    );
   }
 });
 
