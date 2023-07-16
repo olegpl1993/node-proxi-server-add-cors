@@ -7,8 +7,8 @@
     "node": "18.x"
   },
   "scripts": {
-    "start": "node ./dist/index.ts",
-    "dev": "nodemon ./index.ts",
+    "start": "ts-node index.ts",
+    "dev": "nodemon index.ts",
     "build": "webpack"
   },
   "author": "olegpl1993",
