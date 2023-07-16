@@ -27,6 +27,7 @@
     "import/no-duplicates": "off",
     "no-underscore-dangle": "off",
     "no-path-concat": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }
