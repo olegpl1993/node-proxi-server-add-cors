@@ -1,6 +1,6 @@
-import express from 'express';
-import cors from 'cors';
 import axios from 'axios';
+import cors from 'cors';
+import express from 'express';
 
 const PORT = process.env.PORT || 5555;
 const app = express();
@@ -8,10 +8,13 @@ app.use(cors());
 
 app.get('/', async (req, res) => {
   try {
-    const { url } = req.query;
-    if (typeof url === 'string') {
-      const response = await axios.get(url);
+    const additionalParams = new URLSearchParams(req.query as any);
+    additionalParams.delete('url');
+    const newUrl = `${req.query.url}&${additionalParams.toString()}`;
+    if (req.query.url) {
+      const response = await axios.get(newUrl);
       const { data } = response;
+      console.log('data', data);
       res.setHeader('Content-Type', 'application/json');
       res.status(200);
       res.end(JSON.stringify(data));
@@ -32,7 +35,7 @@ app.get('/', async (req, res) => {
   } catch (error) {
     res.status(500);
     res.end(
-      'GET Request: "https://proxi-add-cors.vercel.app/?url=YOUR_API_URL"',
+      `GET Request: "https://proxi-add-cors.vercel.app/?url=YOUR_API_URL" \n Error: ${error}`,
     );
   }
 });
