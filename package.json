@@ -1,7 +1,7 @@
 {
-  "name": "proxi-add-cors",
+  "name": "proxi-no-cors",
   "version": "1.0.0",
-  "description": "proxi-server-add-cors",
+  "description": "proxi-server-no-cors-your-request",
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",
