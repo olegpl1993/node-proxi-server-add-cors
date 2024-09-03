@@ -28,6 +28,7 @@ app.get('/', async (req, res) => {
         </head>
         <body>
           <h1>GET Request: "https://proxi-add-cors.vercel.app/?url=YOUR_API_URL"</h1>
+          <h2>GET Request: "https://proxi-add-cors.onrender.com/?url=YOUR_API_URL"</h2>
         </body>
       </html>
     `);
@@ -35,7 +36,7 @@ app.get('/', async (req, res) => {
   } catch (error) {
     res.status(500);
     res.end(
-      `GET Request: "https://proxi-add-cors.vercel.app/?url=YOUR_API_URL" \n Error: ${error}`,
+      `GET Request Error: ${error}`,
     );
   }
 });
